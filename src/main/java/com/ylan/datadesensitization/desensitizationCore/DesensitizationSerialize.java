@@ -1,4 +1,4 @@
-package com.ylan.datadesensitization.desensitizationCore.serialize;
+package com.ylan.datadesensitization.desensitizationCore;
 
 import cn.hutool.core.util.DesensitizedUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -41,10 +41,13 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
     /**
      * 配置属性
      */
+    // 身份证前N位不脱敏
     private final Integer ID_CARD_NUM_FRONT = 6;
 
+    // 身份证后N位不脱敏
     private final Integer ID_CARD_NUM_END = 4;
 
+    // 地址后N位脱敏
     private final Integer ADDRESS_SENSITIVE_SIZE = 8;
 
     /**

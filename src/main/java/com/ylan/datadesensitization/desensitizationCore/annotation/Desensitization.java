@@ -8,7 +8,7 @@ package com.ylan.datadesensitization.desensitizationCore.annotation;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.ylan.datadesensitization.desensitizationCore.serialize.DesensitizationSerialize;
+import com.ylan.datadesensitization.desensitizationCore.DesensitizationSerialize;
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
 
 import java.lang.annotation.ElementType;
