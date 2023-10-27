@@ -1,4 +1,4 @@
-package com.ylan.datadesensitization.core;
+package com.ylan.datadesensitization.desensitizationCore.enums;
 
 /**
  * @author by pepsi-wyl

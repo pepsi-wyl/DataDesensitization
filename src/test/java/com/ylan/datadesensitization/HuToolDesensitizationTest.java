@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class HuToolDesensitizationTest {
 
     /**
-     * 用户姓名
+     * 中文姓名
      */
     @Test
     public void testUserNameDesensitization(){
@@ -36,7 +36,7 @@ public class HuToolDesensitizationTest {
     }
 
     /**
-     * 身份证
+     * 身份证号
      */
     @Test
     public void testIdCardDesensitization(){
