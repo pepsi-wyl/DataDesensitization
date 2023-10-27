@@ -1,6 +1,5 @@
 package com.ylan.datadesensitization.desensitizationCore.serialize;
 
-import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.DesensitizedUtil;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
@@ -10,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 import com.ylan.datadesensitization.desensitizationCore.annotation.Desensitization;
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
+import com.ylan.datadesensitization.desensitizationCore.utils.PrivacyUtil;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -36,7 +36,7 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
     private Integer endExclude;
 
     // 脱敏字符
-    private String symbol;
+    private char symbol;
 
     /**
      * 配置属性
@@ -59,7 +59,7 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
         switch (type) {
             // 自定义类型脱敏 [startInclude,endExclude)
             case CUSTOMIZE_RULE:
-                jsonGenerator.writeString(CharSequenceUtil.hide(str, startInclude, endExclude));
+                jsonGenerator.writeString(PrivacyUtil.hide(str, startInclude, endExclude, symbol));
                 break;
             // 用户id脱敏
             case USER_ID:

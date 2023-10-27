@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HutoolJackSonEntity {
 
-    @Desensitization(type = DesensitizationTypeEnum.CUSTOMIZE_RULE, startInclude = 5, endExclude = 10, symbol = "&")
+    @Desensitization(type = DesensitizationTypeEnum.CUSTOMIZE_RULE, startInclude = 5, endExclude = 10, symbol = '#')
     private String custom;
 
     @Desensitization(type = DesensitizationTypeEnum.USER_ID)

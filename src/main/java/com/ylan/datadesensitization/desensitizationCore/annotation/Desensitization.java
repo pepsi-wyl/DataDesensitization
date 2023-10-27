@@ -23,22 +23,22 @@ import java.lang.annotation.Target;
 public @interface Desensitization {
 
     /**
-     * 脱敏策略，在使用 CUSTOMIZE_RULE 的时候，startInclude 和 endExclude生效
+     * 脱敏策略，在使用 CUSTOMIZE_RULE 的时候，startInclude 和 endExclude生效  默认 CUSTOMIZE_RULE
      */
     DesensitizationTypeEnum type() default DesensitizationTypeEnum.CUSTOMIZE_RULE;
 
     /**
-     * 脱敏开始位置（包含）
+     * 脱敏开始位置（包含） 默认 0
      */
     int startInclude() default 0;
 
     /**
-     * 脱敏结束位置（不包含）
+     * 脱敏结束位置（不包含） 默认 0
      */
     int endExclude() default 0;
 
     /**
-     * 脱敏字符 *
+     * 脱敏字符 默认 *
      */
-    String symbol() default "*";
+    char symbol() default '*';
 }
