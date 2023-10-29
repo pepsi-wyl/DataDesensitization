@@ -1,6 +1,5 @@
 package com.ylan.datadesensitization.model.entity;
 
-import com.ylan.datadesensitization.desensitizationCore.annotation.Desensitization;
 import com.ylan.datadesensitization.desensitizationCore.annotation.FastJSONDesensitization;
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
 import lombok.AllArgsConstructor;
