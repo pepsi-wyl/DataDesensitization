@@ -8,7 +8,7 @@ package com.ylan.datadesensitization.desensitizationCore.annotation;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.ylan.datadesensitization.desensitizationCore.DesensitizationSerialize;
+import com.ylan.datadesensitization.desensitizationCore.JackSonDesensitizationSerialize;
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
 
 import java.lang.annotation.ElementType;
@@ -19,8 +19,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)          // 标识该注解作用于字段上
 @Retention(RetentionPolicy.RUNTIME) // 表示该注解运行时候生效
 @JacksonAnnotationsInside           // 元注解 <用户打包其他注解一起使用>
-@JsonSerialize(using = DesensitizationSerialize.class)  // 自定义我们的序列化规则
-public @interface Desensitization {
+@JsonSerialize(using = JackSonDesensitizationSerialize.class)  // 自定义我们的序列化规则
+public @interface JackSonDesensitization {
 
     /**
      * 脱敏策略，在使用 CUSTOMIZE_RULE 的时候，startInclude 和 endExclude生效  默认 CUSTOMIZE_RULE

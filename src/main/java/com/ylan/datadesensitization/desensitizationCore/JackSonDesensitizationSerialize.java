@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
-import com.ylan.datadesensitization.desensitizationCore.annotation.Desensitization;
+import com.ylan.datadesensitization.desensitizationCore.annotation.JackSonDesensitization;
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
 import com.ylan.datadesensitization.desensitizationCore.utils.PrivacyUtil;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 // 继承 JsonSerializer，实现ContextualSerializer接口，并重写两个方法
-public class DesensitizationSerialize extends JsonSerializer<String> implements ContextualSerializer {
+public class JackSonDesensitizationSerialize extends JsonSerializer<String> implements ContextualSerializer {
 
     // 脱敏类型
     private DesensitizationTypeEnum type;
@@ -122,19 +122,19 @@ public class DesensitizationSerialize extends JsonSerializer<String> implements 
             // 判断数据类型是否为String类型
             if (Objects.equals(beanProperty.getType().getRawClass(), String.class)) {
                 // 获取脱敏自定义的注解
-                Desensitization desensitization = beanProperty.getAnnotation(Desensitization.class);
+                JackSonDesensitization jackSonDesensitization = beanProperty.getAnnotation(JackSonDesensitization.class);
                 // 为null
-                if (desensitization == null) {
-                    desensitization = beanProperty.getContextAnnotation(Desensitization.class);
+                if (jackSonDesensitization == null) {
+                    jackSonDesensitization = beanProperty.getContextAnnotation(JackSonDesensitization.class);
                 }
                 // 不为null
-                if (desensitization != null) {
+                if (jackSonDesensitization != null) {
                     // 创建定义的序列化类的实例并且返回，入参为注解定义的type，开始位置，结束位置，脱敏字符
-                    return new DesensitizationSerialize(
-                            desensitization.type(),
-                            desensitization.startInclude(),
-                            desensitization.endExclude(),
-                            desensitization.symbol()
+                    return new JackSonDesensitizationSerialize(
+                            jackSonDesensitization.type(),
+                            jackSonDesensitization.startInclude(),
+                            jackSonDesensitization.endExclude(),
+                            jackSonDesensitization.symbol()
                     );
                 }
             }

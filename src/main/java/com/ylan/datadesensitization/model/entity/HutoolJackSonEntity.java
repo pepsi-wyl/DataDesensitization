@@ -1,7 +1,7 @@
 package com.ylan.datadesensitization.model.entity;
 
 import com.ylan.datadesensitization.desensitizationCore.enums.DesensitizationTypeEnum;
-import com.ylan.datadesensitization.desensitizationCore.annotation.Desensitization;
+import com.ylan.datadesensitization.desensitizationCore.annotation.JackSonDesensitization;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,37 +18,37 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HutoolJackSonEntity {
 
-    @Desensitization(type = DesensitizationTypeEnum.CUSTOMIZE_RULE, startInclude = 5, endExclude = 10, symbol = '#')
+    @JackSonDesensitization(type = DesensitizationTypeEnum.CUSTOMIZE_RULE, startInclude = 5, endExclude = 10, symbol = '#')
     private String custom;
 
-    @Desensitization(type = DesensitizationTypeEnum.USER_ID)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.USER_ID)
     private String userId;
 
-    @Desensitization(type = DesensitizationTypeEnum.CHINESE_NAME)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.CHINESE_NAME)
     private String userName;
 
-    @Desensitization(type = DesensitizationTypeEnum.ID_CARD)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.ID_CARD)
     private String idCard;
 
-    @Desensitization(type = DesensitizationTypeEnum.MOBILE_PHONE)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.MOBILE_PHONE)
     private String phone;
 
-    @Desensitization(type = DesensitizationTypeEnum.FIXED_PHONE)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.FIXED_PHONE)
     private String fixedPhone;
 
-    @Desensitization(type = DesensitizationTypeEnum.ADDRESS)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.ADDRESS)
     private String address;
 
-    @Desensitization(type = DesensitizationTypeEnum.EMAIL)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.EMAIL)
     private String email;
 
-    @Desensitization(type = DesensitizationTypeEnum.CAR_LICENSE)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.CAR_LICENSE)
     private String carLicense;
 
-    @Desensitization(type = DesensitizationTypeEnum.PASSWORD)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.PASSWORD)
     private String password;
 
-    @Desensitization(type = DesensitizationTypeEnum.BANK_CARD)
+    @JackSonDesensitization(type = DesensitizationTypeEnum.BANK_CARD)
     private String bankCard;
 
 }
