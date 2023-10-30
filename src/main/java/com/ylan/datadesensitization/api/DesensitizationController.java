@@ -1,7 +1,8 @@
 package com.ylan.datadesensitization.api;
 
-import com.alibaba.fastjson.JSON;
-import com.ylan.datadesensitization.common.R.ResResult;
+import com.ylan.datadesensitization.common.R.ApiResult;
+import com.ylan.datadesensitization.common.R.BizException;
+import com.ylan.datadesensitization.common.R.enums.ResultCodeEnum;
 import com.ylan.datadesensitization.desensitizationCore.annotation.DesensitizeSupport;
 import com.ylan.datadesensitization.model.entity.HutoolControllerAdviceEntity;
 import com.ylan.datadesensitization.model.entity.HutoolFastJsonEntity;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
  * @date 2023-10-18 21:30
  */
 
-@DesensitizeSupport     // 脱敏数据支持
 
 @RestController
 @RequestMapping("/desensitization")
@@ -24,9 +24,9 @@ public class DesensitizationController {
 
     // GET http://localhost:8080/desensitization/HutoolJackSonEntityTest
     @RequestMapping("/hutoolJackSonEntityTest")
-    public ResResult HutoolJackSonEntityTest(){
+    public ApiResult HutoolJackSonEntityTest(){
 
-//        return ResResult.success(
+//        return ApiResult.success(
 //                HutoolJackSonEntity.builder()
 //                        .custom("测试自定义脱敏")
 //                        .userId("9898989898989")
@@ -73,14 +73,15 @@ public class DesensitizationController {
                         .bankCard("6226920277165332")
                         .build()
         );
-        return ResResult.success(list);
+        return ApiResult.success(list);
     }
 
     // GET http://localhost:8080/desensitization/hutoolControllerAdviceEntityTest
     @RequestMapping("/hutoolControllerAdviceEntityTest")
-    public ResResult HutoolControllerAdviceEntityTest(){
+    @DesensitizeSupport     // 脱敏数据支持
+    public ApiResult HutoolControllerAdviceEntityTest(){
 
-//        return ResResult.success(HutoolJackSonEntity.builder()
+//        return ApiResult.success(HutoolJackSonEntity.builder()
 //                        .custom("测试自定义脱敏")
 //                        .userId("9898989898989")
 //                        .userName("武扬岚")
@@ -125,14 +126,14 @@ public class DesensitizationController {
                         .bankCard("6226920277165332")
                         .build()
         );
-        return ResResult.success(list);
+        return ApiResult.success(list);
     }
 
     // GET http://localhost:8080/desensitization/hutoolFastJsonEntityTestTest
     @RequestMapping("/hutoolFastJsonEntityTestTest")
-    public ResResult HutoolFastJsonEntityTest(){
+    public ApiResult HutoolFastJsonEntityTest(){
 
-//        return ResResult.success(
+//        return ApiResult.success(
 //                HutoolFastJsonEntity.builder()
 //                        .custom("测试自定义脱敏")
 //                        .userId("9898989898989")
@@ -179,6 +180,6 @@ public class DesensitizationController {
                         .bankCard("6226920277165332")
                         .build()
         );
-        return ResResult.success(list);
+        return ApiResult.success(list);
     }
 }
