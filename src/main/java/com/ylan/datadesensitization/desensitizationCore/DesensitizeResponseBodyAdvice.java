@@ -101,32 +101,34 @@ public class DesensitizeResponseBodyAdvice implements ResponseBodyAdvice<Object>
     }
 
     private void desensitizationValue(Object obj) throws IllegalAccessException {
-        // 获取要脱敏的类
-        Class<?> clazz = obj.getClass();
-        // 获取本类和父类的属性
-        List<Field> fieldList = getAllFields(clazz);
+        if (obj != null){
+            // 获取要脱敏的类
+            Class<?> clazz = obj.getClass();
+            // 获取本类和父类的属性
+            List<Field> fieldList = getAllFields(clazz);
 
-        // 遍历所有属性 进行字段脱敏
-        for (Field field : fieldList) {
-            // 获取属性上的注解
-            Desensitize annotation = field.getAnnotation(Desensitize.class);
-            if (annotation == null) continue;
+            // 遍历所有属性 进行字段脱敏
+            for (Field field : fieldList) {
+                // 获取属性上的注解
+                Desensitize annotation = field.getAnnotation(Desensitize.class);
+                if (annotation == null) continue;
 
-            // 判断属性的类型非字符串的类型 直接返回
-            Class<?> type = field.getType();
-            if (String.class != type) continue;
+                // 判断属性的类型非字符串的类型 直接返回
+                Class<?> type = field.getType();
+                if (String.class != type) continue;
 
-            // 获取脱敏注解内数据信息
-            DesensitizationTypeEnum annotType = annotation.type();
-            int startInclude = annotation.startInclude();
-            int endExclude = annotation.endExclude();
-            char symbol = annotation.symbol();
+                // 获取脱敏注解内数据信息
+                DesensitizationTypeEnum annotType = annotation.type();
+                int startInclude = annotation.startInclude();
+                int endExclude = annotation.endExclude();
+                char symbol = annotation.symbol();
 
-            // 对该字段进行数据脱敏，并设置脱敏后的值
-            field.setAccessible(true);
-            String oldValue = (String) field.get(obj);
-            String newValue = dataMasking(annotType, oldValue, startInclude, endExclude, symbol);
-            field.set(obj, newValue);
+                // 对该字段进行数据脱敏，并设置脱敏后的值
+                field.setAccessible(true);
+                String oldValue = (String) field.get(obj);
+                String newValue = dataMasking(annotType, oldValue, startInclude, endExclude, symbol);
+                field.set(obj, newValue);
+            }
         }
     }
 
