@@ -3,9 +3,10 @@ package com.ylan.datadesensitization.api;
 import com.ylan.datadesensitization.common.R.ApiResult;
 import com.ylan.datadesensitization.common.R.BizException;
 import com.ylan.datadesensitization.common.R.enums.ResultCodeEnum;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ylan.datadesensitization.model.RequestParam;
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,24 @@ public class ErrorController {
         }
         list.add("str");
         return ApiResult.success(list);
+    }
+
+    /**
+     * ###
+     * POST http://localhost:8080/error/requestParamExceptionError
+     * Content-Type: application/json
+     *
+     * {
+     *   "page": 10,
+     *   "rows":10,
+     *   "userName": "wyl"
+     * }
+     * @param requestParam
+     * @return
+     */
+    @PostMapping("/requestParamExceptionError")
+    public ApiResult requestParamExceptionError(@Valid @RequestBody RequestParam requestParam){
+        return ApiResult.success(requestParam);
     }
 
 }
