@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,6 +51,14 @@ public class GlobalExceptionHandler {
         );
         // ======>封装异常信息结束<=======
         return new ResponseEntity<>(ApiResult.fail(ResultCodeEnum.PARAM_ERROR, errors), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    // ===========================================>404异常========================================
+    @ExceptionHandler(value = NoHandlerFoundException.class)
+    @ResponseBody
+    public ResponseEntity<ApiResult> noHandlerFoundExceptionError(NoHandlerFoundException e) {
+        log.error("============字段参数校验失败 => NoHandlerFoundException", e);
+        return new ResponseEntity<>(ApiResult.fail(ResultCodeEnum.SUBRESOURCE_ERROR, e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     // ===========================================>系统异常========================================
